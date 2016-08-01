@@ -8,6 +8,8 @@ import {
   View,
   element,
   Navigator,
+  ScrollView,
+  ListView,
 } from 'react-native';
 import {
 SCREEN_HEIGHT,
@@ -22,7 +24,6 @@ class ReportViewController extends Component {
   {
     super(props)
     this.state  = props;
-    this.jumpTest = this.jumpTest.bind(this)
   }
   static propTypes = {
     tabbarController:React.PropTypes.element,
@@ -82,53 +83,63 @@ class ReportViewController extends Component {
           />
         </View>
         <View style = {contentStyle}>
-            <TouchableOpacity onPress = {this.jumpTest}>
-              <View style = {cellStyle}>
-                <Text>我是报表</Text>
-              </View>
-
-            </TouchableOpacity>
+            <View style = {styes.tabbleHeadStly}>
+                <View style={styes.tabbleLeftStyle}>
+                    <Text>hhhh</Text>
+                </View>
+                <View style = {styes.tabbleRightStyle}>
+                      <ScrollView style = {styes.tabbleHeadScrollStyle}
+                      horizontal={true}>
+                        <View style={styes.tabbleRightStyle}>
+                            <Text>hhhh</Text>
+                        </View>
+                      </ScrollView>
+                </View>
+            </View>
 
         </View>
         <View style= {tabbarStyle}>
         <MRJTabbar
           {...tabbar.props}
         />
-          {/*{tabbar.render()}*/}
         </View>
       </View>
     )
   }
-  jumpTest()
-  {
-    // var SecondPageComponent = MRJHomeSubPage
-    // var navigator = this.props.navigator;
-    //     //为什么这里可以取得 props.navigator?请看上文:
-    //     //<Component {...route.params} navigator={navigator} />
-    //     //这里传递了navigator作为props
-    //     if(navigator) {
-    //         navigator.push({
-    //             name: 'SecondPageComponent',
-    //             component: SecondPageComponent,
-    //         })
-    //     }
-  }
+
   componentDidMount()
   {
-    // let unsubscribe = store.subscribe(() =>{
-    //   console.log(store)
-    //   console.log(store.getState())
-    // }
-    //
-    // )
-    // store.subscribe = this.testfunctin();
+
   }
 }
+const rightWidth = SCREEN_WIDTH-100;
 const styes = StyleSheet.create(
   {
     test:{
       marginTop:20,
       marginLeft:8,
+    },
+    tabbleHeadStly:{
+      height:44,
+      width:SCREEN_WIDTH,
+      backgroundColor:'#FF0000',
+      flexDirection:'row',
+      alignItems:'center',
+    },
+    tabbleLeftStyle:{
+      width:100,
+      marginLeft:8,
+      backgroundColor:'#FFFF00',
+    },
+    tabbleRightStyle:{
+      width:rightWidth,
+      height:44,
+    },
+    tabbleHeadScrollStyle:{
+      // flexDirection:'row',
+      // alignItems:'center',
+      height:44,
+      // justifyContent:'space-between',
     }
   }
 )
